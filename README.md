@@ -67,22 +67,25 @@ def scaled_dot_product_attention(Q, K, V, mask=None):
 ### 多头注意力机制（Multi-Head Attention）
 多头注意力机制在Transformer中发挥着与卷积神经网络（CNN）中卷积核类似的作用。CNN使用多个不同的卷积核在空域上捕捉不同的局部信息，而Transformer的多头注意力通过多个头并行地关注输入数据在不同维度上的依赖关系。
 
-假设有$h$个头，每个头拥有独立的线性变换矩阵$W_i^Q$，$W_i^K$，$W_i^V$（分别作用于查询、键和值的映射），每个头的计算如下：
+假设有 $h$ 个头，每个头拥有独立的线性变换矩阵 $W_i^Q$， $W_i^K$， $W_i^V$（分别作用于查询、键和值的映射），每个头的计算如下：
+
 $$
 \text{head}_i = \text{Attention}(Q W_i^Q, K W_i^K, V W_i^V)
 $$
 
-将这些头的输出沿最后一维拼接（Concat），并通过线性变换矩阵$W^O$映射回原始嵌入维度。
+将这些头的输出沿最后一维拼接（Concat），并通过线性变换矩阵 $W^O$ 映射回原始嵌入维度。
+
 $$
 \text MultiHead(Q, K, V) = Concat(head_1, ..., head_n)W^O
 $$
 
 映射回原始嵌入维度的主要目的是为了实现残差连接（Residual Connection），即：
+
 $$
 x + \text SubLayer(x)
 $$
 
-你将发现其他模块（如注意力模块、多头注意力机制和前馈网络）的输出层大多都是一样的维度。这是因为只有当输入$x$的形状与经过层变换后的输出$SubLayer(x)$的形状一致时，才能按预期的进行逐元素相加（element-wise addition）,否则会导致张量维度不匹配，需要额外的变换操作。
+你将发现其他模块（如注意力模块、多头注意力机制和前馈网络）的输出层大多都是一样的维度。这是因为只有当输入 $x$ 的形状与经过层变换后的输出 $SubLayer(x)$ 的形状一致时，才能按预期的进行逐元素相加（element-wise addition）,否则会导致张量维度不匹配，需要额外的变换操作。
 
 
 ```python
