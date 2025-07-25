@@ -277,6 +277,11 @@ $$
 \mu_j = \frac{1}{\text{batch_size}} \sum_{i=1}^{\text{batch_size}} x_{i,j}, \quad
 \sigma_j^2 = \frac{1}{\text{batch_size}} \sum_{i=1}^{\text{batch_size}} (x_{i,j} - \mu_j)^2
 $$
+
+$$
+\mu_j = \frac{1}{\text{batch\_size}}\sum_{i=1}^{\text{batch\_size}} x_{i,j}, \quad
+\sigma_j^2 = \frac{1}{\text{batch\_size}}\sum_{i=1}^{\text{batch\_size}} (x_{i,j} - \mu_j)^2
+$$
     
   - LayerNorm基于每个样本的所有特征，针对样本自身（行内所有特征）进行归一化。即在每一行（一个样本的$feature_size$个特征）上计算均值和方差。
     
