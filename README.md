@@ -271,15 +271,16 @@ Q：BatchNorm和LayerNorm的区别
 
 - BatchNorm基于一个批次（batch）内的所有样本，针对特征维度（列）进行归一化。即在每一列（相同特征或嵌入维度上的batch_size个样本）上计算均值和方差。
   
-  - 对第$j$列（特征）计算均值和方差：
+  - 对第 $j$ 列（特征）计算均值和方差：
     
     $$
     \mu_j = \frac{1}{\text{batch\_size}} \sum_{i=1}^{\text{batch\_size}} x_{i,j}, \quad
     \sigma^2_j = \frac{1}{\text{batch\_size}} \sum_{i=1}^{\text{batch\_size}} (x_{i,j} - \mu_j)^2
     $$
+    
   - LayerNorm基于每个样本的所有特征，针对样本自身（行内所有特征）进行归一化。即在每一行（一个样本的$feature_size$个特征）上计算均值和方差。
     
-    - 对第$i$行（样本）计算均值和方差：
+    - 对第 $i$ 行（样本）计算均值和方差：
     
     $$
     \mu_i = \frac{1}{\text{feature\_size}} \sum_{j=1}^{\text{feature\_size}} x_{i,j}, \quad
@@ -287,24 +288,29 @@ Q：BatchNorm和LayerNorm的区别
     $$
 
 #### LayerNorm 的计算过程
-假设输入向量为$ x = (x_1, x_2, ..., x_d) $，LayerNorm的计算步骤如下：
-1. **计算均值和方差**：对输入的所有特征求均值$\mu$和方差$\sigma^2$：
+假设输入向量为 $ x = (x_1, x_2, ..., x_d) $，LayerNorm的计算步骤如下：
+1. **计算均值和方差**：对输入的所有特征求均值 $\mu$ 和方差 $\sigma^2$ ：
+
 $$
   \mu = \frac{1}{d} \sum_{j=1}^{d} x_j, \quad
   \sigma^2 = \frac{1}{d} \sum_{j=1}^{d} (x_j - \mu)^2
 $$
+
 2. **归一化公式**：将输入特征$\hat x_i$进行归一化：
+
 $$
    \hat{x}_i = \frac{x_i - \mu}{\sqrt{\sigma^2 + \epsilon}}
 $$
-其中，$\epsilon$是一个很小的常数（比如1e-9），防止除零的情况。
+
+其中，$\epsilon$ 是一个很小的常数（比如1e-9），防止除零的情况。
 
 3. **引入可学习参数**：归一化后的输出乘以$\gamma$，并加上$\beta$，公式如下：
+
 $$
    \text{Output} = \gamma \hat{x} + \beta
 $$
 
-其中，$\gamma$和$\beta$是可学习的参数，用于进一步调整归一化后的输出。
+其中，$\gamma$ 和 $\beta$ 是可学习的参数，用于进一步调整归一化后的输出。
 
 ```python
 class LayerNorm(nn.Module):
