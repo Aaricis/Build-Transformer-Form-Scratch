@@ -214,13 +214,13 @@ $$
 
 当网络层数增加时，链式法则中的梯度相乘可能导致梯度值越来越小（梯度消失）或越来越大（梯度爆炸），使得模型难以训练和收敛。
 
-假设输出层的损失为$\mathcal{L}$，且$\text{SubLayer}(x)$表示为$F(x)$。在没有残差连接的情况下，梯度通过链式法则计算为：
+假设输出层的损失为 $\mathcal{L}$，且 $\text{SubLayer}(x)$表示为 $F(x)$。在没有残差连接的情况下，梯度通过链式法则计算为：
 
 $$
 \frac{\partial \mathcal{L}}{\partial x} = \frac{\partial \mathcal{L}}{\partial F(x)} \cdot \frac{\partial F(x)}{\partial x}
 $$
 
-如果$\frac{\partial F(x)}{\partial x}$的绝对值小于1，那么随着层数的增加，梯度会快速缩小，导致梯度消失。
+如果 $\frac{\partial F(x)}{\partial x}$的绝对值小于1，那么随着层数的增加，梯度会快速缩小，导致梯度消失。
 
 引入残差连接后，输出变为$F(x) + x$，其梯度为：
 
@@ -228,7 +228,7 @@ $$
 \frac{\partial \mathcal{L}}{\partial x} = \frac{\partial \mathcal{L}}{\partial (x + F(x))} \cdot (1 + \frac{\partial F(x)}{\partial x})
 $$
 
-这里包含一个常数项1，这意味着即使$\frac{\partial F(x)}{\partial x}$很小，梯度仍然可以有效地反向传播，缓解梯度消失问题。
+这里包含一个常数项1，这意味着即使 $\frac{\partial F(x)}{\partial x}$很小，梯度仍然可以有效地反向传播，缓解梯度消失问题。
 
 
 ```python
