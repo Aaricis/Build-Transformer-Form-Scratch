@@ -28,6 +28,7 @@ import matplotlib.pyplot as plt
 $$
 \text{Attention}(Q, K, V) = \text{Softmax}\left(\frac{Q K^\top}{\sqrt{d_k}}\right) V
 $$
+
 其中，查询和键向量的维度为$d_k$
 
 
