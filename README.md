@@ -275,6 +275,7 @@ Q：BatchNorm和LayerNorm的区别
     
     $$
     \mu_j = \frac{1}{\text{batch\_size}} \sum_{i=1}^{\text{batch\_size}} x_{i,j}, \quad
+    
     \sigma^2_j = \frac{1}{\text{batch\_size}} \sum_{i=1}^{\text{batch\_size}} (x_{i,j} - \mu_j)^2
     $$
     
@@ -284,11 +285,12 @@ Q：BatchNorm和LayerNorm的区别
     
     $$
     \mu_i = \frac{1}{\text{feature\_size}} \sum_{j=1}^{\text{feature\_size}} x_{i,j}, \quad
+    
     \sigma^2_i = \frac{1}{\text{feature\_size}} \sum_{j=1}^{\text{feature\_size}} (x_{i,j} - \mu_i)^2
     $$
 
 #### LayerNorm 的计算过程
-假设输入向量为 $ x = (x_1, x_2, ..., x_d) $，LayerNorm的计算步骤如下：
+假设输入向量为 $x = (x_1, x_2, ..., x_d)$，LayerNorm的计算步骤如下：
 1. **计算均值和方差**：对输入的所有特征求均值 $\mu$ 和方差 $\sigma^2$ ：
 
 $$
