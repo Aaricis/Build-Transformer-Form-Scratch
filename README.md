@@ -149,15 +149,16 @@ class MultiHeadAttention(nn.Module):
 
 ## Position-wise Feed-Forward Networks
 
-Encoder-Decoder架构中，另一个看起来“大一点”的模块就是Feed Forward，它在每个位置$i$上的计算可表示为：
+Encoder-Decoder架构中，另一个看起来“大一点”的模块就是Feed Forward，它在每个位置 $i$ 上的计算可表示为：
+
 $$
 \text {FFN}(x_i) = max(0, x_iW_1 + b_1)W_2+b_2
 $$
 
 其中：
-- $x_i \in \mathbb{R}^{d_{\text{model}}}$表示第$i$个位置的输入向量；
-- $W_1 \in \mathbb{R}^{d_{\text{model}} \times d_{\text{ff}}}$ 和$W_2 \in \mathbb{R}^{d_{\text{ff}} \times d_{\text{model}}}$是两个线性变换的权重矩阵；
-- $b_1 \in \mathbb{R}^{d_{\text{ff}}}$ 和$b_2 \in \mathbb{R}^{d_{\text{model}}}$是对应的偏置向量；
+- $x_i \in \mathbb{R}^{d_{\text{model}}}$表示第 $i$ 个位置的输入向量；
+- $W_1 \in \mathbb{R}^{d_{\text{model}} \times d_{\text{ff}}}$ 和 $W_2 \in \mathbb{R}^{d_{\text{ff}} \times d_{\text{model}}}$ 是两个线性变换的权重矩阵；
+- $b_1 \in \mathbb{R}^{d_{\text{ff}}}$ 和 $b_2 \in \mathbb{R}^{d_{\text{model}}}$ 是对应的偏置向量；
 - $max(0, .)$是ReLu激活函数，用于引入非线性。
 
 Position-wise实际是线性层本身的一个特性，在线性层中，每个输入向量（对应于序列中的一个位置，比如一个词向量）都会通过相同的权重矩阵进行线性变换。这意味着每个位置的处理是相互独立的，逐元素这一点可以看成kernal_size=1的卷积核扫过一遍序列。
