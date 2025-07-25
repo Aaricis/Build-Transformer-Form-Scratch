@@ -272,6 +272,7 @@ Q：BatchNorm和LayerNorm的区别
 - BatchNorm基于一个批次（batch）内的所有样本，针对特征维度（列）进行归一化。即在每一列（相同特征或嵌入维度上的batch_size个样本）上计算均值和方差。
   
   - 对第 $j$ 列（特征）计算均值和方差：
+
     $$
     \mu_j = \frac{1}{\text{batch\_size}} \sum_{i=1}^{\text{batch\_size}} x_{i,j}, 
     \quad
