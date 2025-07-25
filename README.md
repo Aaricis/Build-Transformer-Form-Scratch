@@ -1,4 +1,4 @@
-# Build Transformer Form Scratch
+# Build Transformer From Scratch
 
 出于学习的目的，为了弄清楚Transformer的实现细节，这里从零开始复现论文[Attention Is All You Need](https://arxiv.org/abs/1706.03762)中执行文本翻译任务的Transformer(Pytorch)。该版本与Pytorch提供的`torch.nn.Transformer`不同略有不同，包含了Embedding的步骤。
 
@@ -23,13 +23,13 @@ import matplotlib.pyplot as plt
 ### Scaled Dot-Product Attention
 缩放点积注意力机制
 
-给定查询矩阵$Q$、键矩阵$K$、值矩阵$V$，计算Attention如下：
+给定查询矩阵 $Q$、键矩阵 $K$、值矩阵 $V$，计算Attention如下：
 
 $$
 \text{Attention}(Q, K, V) = \text{Softmax}\left(\frac{Q K^\top}{\sqrt{d_k}}\right) V
 $$
 
-其中，查询和键向量的维度为$d_k$
+其中，查询和键向量的维度为 $d_k$
 
 
 ```python
