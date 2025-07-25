@@ -274,7 +274,9 @@ Q：BatchNorm和LayerNorm的区别
   - 对第 $j$ 列（特征）计算均值和方差：
     
     $$
-    \mu_j = \frac{1}{\text{batch\_size}} \sum_{i=1}^{\text{batch\_size}} x_{i,j}, \quad
+    \mu_j = \frac{1}{\text{batch\_size}} \sum_{i=1}^{\text{batch\_size}} x_{i,j},
+
+    \quad
     
     \sigma^2_j = \frac{1}{\text{batch\_size}} \sum_{i=1}^{\text{batch\_size}} (x_{i,j} - \mu_j)^2
     $$
@@ -284,7 +286,9 @@ Q：BatchNorm和LayerNorm的区别
     - 对第 $i$ 行（样本）计算均值和方差：
     
     $$
-    \mu_i = \frac{1}{\text{feature\_size}} \sum_{j=1}^{\text{feature\_size}} x_{i,j}, \quad
+    \mu_i = \frac{1}{\text{feature\_size}} \sum_{j=1}^{\text{feature\_size}} x_{i,j},
+
+    \quad
     
     \sigma^2_i = \frac{1}{\text{feature\_size}} \sum_{j=1}^{\text{feature\_size}} (x_{i,j} - \mu_i)^2
     $$
